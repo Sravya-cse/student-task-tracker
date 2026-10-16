@@ -1,0 +1,91 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Taskly – Student Task & Productivity Dashboard</title>
+<link rel="stylesheet" href="style.css">
+</head>
+<body>
+<div class="app" id="top">
+  <aside class="sidebar">
+    <div class="brand"><span class="logo"><svg viewBox="0 0 24 24" fill="none" stroke="#fff" stroke-width="3" stroke-linecap="round" stroke-linejoin="round"><path d="M5 12l5 5L19 7"/></svg></span>Taskly</div>
+    <nav id="nav" aria-label="Main">
+      <h4>General</h4>
+      <a href="#" class="nav-item active" data-target="top" data-icon="grid">Dashboard</a>
+      <h4>Learning</h4>
+      <a href="#" class="nav-item" data-target="schedule" data-icon="calendar">Schedule</a>
+      <a href="#" class="nav-item" data-target="tasks" data-icon="check">Tasks</a>
+      <a href="#" class="nav-item" data-target="" data-icon="file" data-name="Tests">Tests</a>
+      <a href="#" class="nav-item" data-target="notes" data-icon="note">Notes</a>
+      <h4>Performance</h4>
+      <a href="#" class="nav-item" data-target="" data-icon="chart" data-name="Reports">Reports</a>
+      <a href="#" class="nav-item" data-target="progress" data-icon="trend">Progress</a>
+      <h4>Support</h4>
+      <a href="#" class="nav-item" data-target="" data-icon="gear" data-name="Preferences">Preferences</a>
+      <a href="#" class="nav-item" data-target="" data-icon="logout" data-name="Log out">Log out</a>
+    </nav>
+  </aside>
+
+  <main class="main">
+    <header class="topbar">
+      <div class="profile"><span class="avatar">AM</span><div><strong>Alex Morgan</strong><small>Class 12 · Year 2</small></div></div>
+      <div class="top-actions">
+        <input type="search" id="search" class="search" placeholder="Search tasks…" aria-label="Search tasks" hidden>
+        <button class="icon-btn purple" id="bellBtn" aria-label="Notifications"><span data-icon="bell"></span><i class="badge" id="badge" hidden>0</i></button>
+        <button class="icon-btn dark" id="searchBtn" aria-label="Search"><span data-icon="search"></span></button>
+      </div>
+    </header>
+
+    <div class="grid">
+      <section class="card tasks" id="tasks">
+        <div class="card-head"><h2>My Tasks</h2><button class="btn dark" id="addTaskBtn"><span data-icon="plus"></span>Add Task</button></div>
+        <div class="stats" id="stats"></div>
+        <form id="taskForm" class="form" hidden>
+          <input id="fTitle" placeholder="Task title" required maxlength="80" aria-label="Task title">
+          <input id="fSubject" placeholder="Subject (e.g. Maths)" maxlength="30" aria-label="Subject">
+          <input id="fDue" type="date" aria-label="Deadline">
+          <select id="fPriority" aria-label="Priority"><option value="low">Low</option><option value="medium" selected>Medium</option><option value="high">High</option></select>
+          <div class="form-btns"><button class="btn purple" type="submit" id="fSave">Save task</button><button class="btn ghost" type="button" id="fCancel">Cancel</button></div>
+        </form>
+        <div class="tabs" id="tabs">
+          <button class="tab active" data-f="all">All</button><button class="tab" data-f="todo">To Do</button><button class="tab" data-f="progress">In Progress</button><button class="tab" data-f="done">Done</button>
+        </div>
+        <ul class="task-list" id="taskList"></ul>
+        <button class="btn ghost wide" id="viewAll">View All Tasks</button>
+      </section>
+
+      <div class="side">
+        <section class="card" id="notes">
+          <div class="card-head"><h2>My Notes</h2><button class="btn dark sm" id="addNoteBtn"><span data-icon="plus"></span>Add Note</button></div>
+          <form id="noteForm" class="form" hidden>
+            <input id="nTitle" placeholder="Note title" required maxlength="40" aria-label="Note title">
+            <textarea id="nText" placeholder="Short description" maxlength="140" rows="2" aria-label="Note text"></textarea>
+            <div class="form-btns"><button class="btn purple sm" type="submit">Save note</button></div>
+          </form>
+          <div class="notes" id="noteList"></div>
+        </section>
+
+        <section class="card" id="schedule">
+          <div class="card-head"><h2>My Schedule</h2><input type="date" id="schedDate" class="date" aria-label="Schedule date"></div>
+          <table class="sched"><thead><tr><th>Time</th><th>Lesson</th><th>Location</th><th></th></tr></thead><tbody id="schedBody"></tbody></table>
+          <form id="schedForm" class="form row">
+            <input id="sTime" type="time" required aria-label="Time"><input id="sSubject" placeholder="Lesson" required maxlength="30" aria-label="Lesson"><input id="sLoc" placeholder="Room" maxlength="20" aria-label="Location">
+            <button class="btn purple sm" type="submit">Add</button>
+          </form>
+          <p class="hint">Entries marked “sample” are demo data. Delete them or add your own.</p>
+        </section>
+
+        <section class="card" id="progress">
+          <div class="card-head"><h2>My Progress</h2><span class="pill" id="overallPill">0%</span></div>
+          <p class="hint" id="progressSummary"></p>
+          <div id="subjectBars"></div>
+        </section>
+      </div>
+    </div>
+  </main>
+</div>
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+<script src="script.js"></script>
+</body>
+</html>
